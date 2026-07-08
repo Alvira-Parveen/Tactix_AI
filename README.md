@@ -17,7 +17,7 @@ Designed with a premium, warm cream aesthetic (featuring atmospheric glassmorphi
 
 ---
 
-🌐 **Live Demo :** 
+🌐 **Deployed Link :** https://tactix-ai.onrender.com
 
 --- 
 

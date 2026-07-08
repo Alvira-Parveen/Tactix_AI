@@ -1,0 +1,37 @@
+# TACTIX AI — TECHNICAL STACK & DEPENDENCY REQUIREMENTS
+# This file documents all system runtimes, Node.js packages, and Python libraries required to install, build, and run the project end-to-end.
+
+# 1. RUNTIME & COMPILER ENGINES
+
+Node.js >= 20.10.0 (LTS recommended)
+npm >= 10.2.0
+Python >= 3.10.0 (Required only for E2E browser smoke tests)
+
+# 2. CORE SYSTEM FRAMEWORKS (Node.js/npm)
+# Automatically installed locally by running: npm install
+
+react==19.2.0
+react-dom==19.2.0
+vite==8.0.16
+typescript==5.8.3
+tailwindcss==4.2.1
+@tailwindcss/vite==4.2.1
+@tanstack/react-start==1.168.26   # File-based routing and SSR framework
+@tanstack/react-router==1.170.16  # State-controlled client-side router
+@tanstack/react-query==5.101.1    # Server-state fetching and caching
+ai==7.0.14                         # Vercel AI SDK Core
+@ai-sdk/openai-compatible==3.0.5   # Provider redirection wrapper
+onnxruntime-web==1.27.0            # WebAssembly client-side YOLO v10 execution
+recharts==2.15.4                   # Tactical heatmaps & player radar charts
+lucide-react==0.575.0              # Icon system
+zod==3.24.2                        # Schema validation
+nitro==3.0.260603-beta             # Production serverless bundler (SSR runtime)
+vitest==4.1.9                      # Unit testing framework
+
+
+# 3. AUTOMATION & TEST DEPENDENCIES (Python/pip)
+# Installed in your Python environment by running: pip install -r requirements.txt
+
+playwright==1.60.0                 # E2E Playwright browser automation
+pytest==9.1.1                      # Python test runner framework
+python-dotenv==1.2.2               # Loads environment variables from .env

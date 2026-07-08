@@ -1,0 +1,247 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * TACTIX AI — Analyst Command Center design system.
+ * Dark analyst cockpit. Green primary = live signal. Red danger = threat alerts.
+ * Fonts loaded via <link> in __root.tsx.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+
+  @keyframes draw-line {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0 0 0 0); }
+  }
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  @keyframes ticker {
+    0% { transform: translateY(6px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  @keyframes skeleton-shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+}
+
+@utility skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: color-mix(in oklab, currentColor 8%, transparent);
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklab, currentColor 12%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+}
+
+:root {
+  --radius: 0.375rem;
+  /* Custom cream light theme — applied globally. */
+  --background: oklch(0.965 0.012 85);       /* #f7f4ed parchment */
+  --foreground: oklch(0.22 0 0);              /* #1c1c1c charcoal */
+  --card: oklch(0.985 0.005 85);              /* #fcfbf8 off-white */
+  --card-foreground: oklch(0.22 0 0);
+  --popover: oklch(0.985 0.005 85);
+  --popover-foreground: oklch(0.22 0 0);
+  --primary: oklch(0.22 0 0);
+  --primary-foreground: oklch(0.985 0.005 85);
+  --secondary: oklch(0.945 0.012 85);
+  --secondary-foreground: oklch(0.22 0 0);
+  --muted: oklch(0.5 0.005 85);               /* #5f5f5d */
+  --muted-foreground: oklch(0.5 0.005 85);
+  --accent: oklch(0.945 0.012 85);
+  --accent-foreground: oklch(0.22 0 0);
+  --destructive: oklch(0.58 0.2 25);
+  --destructive-foreground: oklch(0.985 0.005 85);
+  --danger: oklch(0.58 0.2 25);
+  --danger-foreground: oklch(0.985 0.005 85);
+  --border: oklch(0.925 0.008 85);            /* #eceae4 */
+  --input: oklch(0.925 0.008 85);
+  --ring: oklch(0.22 0 0);
+  --chart-1: oklch(0.55 0.14 148);
+  --chart-2: oklch(0.58 0.2 25);
+  --chart-3: oklch(0.55 0.14 230);
+  --chart-4: oklch(0.68 0.13 85);
+  --chart-5: oklch(0.5 0.18 300);
+  --sidebar: oklch(0.965 0.012 85);
+  --sidebar-foreground: oklch(0.22 0 0);
+  --sidebar-primary: oklch(0.22 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0.005 85);
+  --sidebar-accent: oklch(0.945 0.012 85);
+  --sidebar-accent-foreground: oklch(0.22 0 0);
+  --sidebar-border: oklch(0.925 0.008 85);
+  --sidebar-ring: oklch(0.22 0 0);
+}
+
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+  }
+}
+
+/*
+ * Custom cream theme — scoped to marketing surfaces (home / hub) only.
+ * Applying `.theme-cream` to a container overrides the semantic color
+ * tokens for everything inside it, so shared components (LiveFootballFeed,
+ * match cards, etc.) automatically render on the parchment palette while
+ * the in-match dashboards keep the dark tactical theme.
+ */
+.theme-cream {
+  /* Override the compiled Tailwind color tokens directly — @theme inline
+   * bakes --color-* values at build time, so redefining --background alone
+   * would not cascade. */
+  --color-background: oklch(0.965 0.012 85);     /* #f7f4ed parchment */
+  --color-foreground: oklch(0.22 0 0);            /* #1c1c1c charcoal */
+  --color-card: oklch(0.965 0.012 85);
+  --color-card-foreground: oklch(0.22 0 0);
+  --color-popover: oklch(0.965 0.012 85);
+  --color-popover-foreground: oklch(0.22 0 0);
+  --color-primary: oklch(0.22 0 0);
+  --color-primary-foreground: oklch(0.985 0.005 85); /* #fcfbf8 off-white */
+  --color-secondary: oklch(0.945 0.012 85);
+  --color-secondary-foreground: oklch(0.22 0 0);
+  --color-muted: oklch(0.5 0.005 85);              /* #5f5f5d */
+  --color-muted-foreground: oklch(0.5 0.005 85);
+  --color-accent: oklch(0.945 0.012 85);
+  --color-accent-foreground: oklch(0.22 0 0);
+  --color-border: oklch(0.925 0.008 85);           /* #eceae4 */
+  --color-input: oklch(0.925 0.008 85);
+  --color-ring: oklch(0.62 0.19 256);
+
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: -0.005em;
+}
+
+/*
+ * Tailwind v4 with `@theme inline` bakes the utility class values from the
+ * top-level `:root` tokens at build time. Redefining --color-* on
+ * .theme-cream only affects `var(--color-*)` references, not the compiled
+ * utility declarations. So we also re-apply the cream palette to the
+ * utilities used inside .theme-cream via targeted overrides.
+ */
+.theme-cream .bg-background { background-color: oklch(0.965 0.012 85); }
+.theme-cream .bg-card,
+.theme-cream .bg-card\/50,
+.theme-cream .bg-card\/40 { background-color: oklch(0.965 0.012 85); }
+.theme-cream .bg-surface,
+.theme-cream .bg-surface\/40,
+.theme-cream .bg-surface\/60 { background-color: oklch(0.945 0.012 85); }
+.theme-cream .text-foreground { color: oklch(0.22 0 0); }
+.theme-cream .text-muted { color: oklch(0.5 0.005 85); }
+.theme-cream .text-muted-foreground { color: oklch(0.5 0.005 85); }
+.theme-cream .border-border { border-color: oklch(0.925 0.008 85); }
+.theme-cream .divide-border > * + * { border-color: oklch(0.925 0.008 85); }
+
+/* Dark decorative tints against dark theme (e.g. bg-white/5, border-white/10)
+ * flip to warm charcoal tints against the cream surface so team badges and
+ * subtle chips stay legible without becoming dark holes. */
+.theme-cream .bg-white\/5 { background-color: rgba(28, 28, 28, 0.04); }
+.theme-cream .bg-white\/10 { background-color: rgba(28, 28, 28, 0.06); }
+.theme-cream .border-white\/5 { border-color: rgba(28, 28, 28, 0.08); }
+.theme-cream .border-white\/10 { border-color: rgba(28, 28, 28, 0.12); }
+
+/* Cream-scoped selection highlight */
+.theme-cream ::selection {
+  background-color: color-mix(in oklab, var(--color-foreground) 15%, transparent);
+}
+
+/* Signature dark button — inset shadow technique. */
+.btn-inset {
+  background: #1c1c1c;
+  color: #fcfbf8;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 400;
+  transition: opacity 0.15s ease;
+  box-shadow:
+    rgba(255,255,255,0.2) 0px 0.5px 0px 0px inset,
+    rgba(0,0,0,0.2) 0px 0px 0px 0.5px inset,
+    rgba(0,0,0,0.05) 0px 1px 2px 0px;
+}
+.btn-inset:hover { opacity: 0.92; }
+.btn-inset:active { opacity: 0.8; }
+.btn-inset:focus-visible {
+  outline: none;
+  box-shadow:
+    rgba(255,255,255,0.2) 0px 0.5px 0px 0px inset,
+    rgba(0,0,0,0.2) 0px 0px 0px 0.5px inset,
+    rgba(0,0,0,0.1) 0px 4px 12px;
+}
+
+/* Ghost/outline button on cream */
+.btn-ghost-cream {
+  background: transparent;
+  color: #1c1c1c;
+  border: 1px solid rgba(28,28,28,0.4);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-weight: 400;
+  transition: opacity 0.15s ease;
+}
+.btn-ghost-cream:hover { background: rgba(28,28,28,0.04); }
+.btn-ghost-cream:active { opacity: 0.8; }
